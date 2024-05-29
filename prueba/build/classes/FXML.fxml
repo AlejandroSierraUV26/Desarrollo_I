@@ -42,7 +42,7 @@
             </AnchorPane>
             <AnchorPane fx:id="crear_formulario" prefHeight="400.0" prefWidth="300.0" styleClass="gradient" stylesheets="@loginDesign.css">
                <children>
-                  <FontAwesomeIcon fill="WHITE" glyphName="COFFEE" layoutX="87.0" layoutY="182.0" size="10em" />
+                  <FontAwesomeIcon fill="RED" glyphName="COFFEE" layoutX="87.0" layoutY="182.0" size="10em" />
                   <Label layoutX="56.0" layoutY="200.0" text="La Sazón de mi Mami" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
