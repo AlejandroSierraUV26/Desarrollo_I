@@ -14,7 +14,7 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane fx:id="iniciar_formulario" layoutX="300.0" prefHeight="400.0" prefWidth="300.0" styleClass="white-form" stylesheets="@loginDesign.css">
+            <AnchorPane fx:id="iniciar_formulario" layoutX="300.0" prefHeight="400.0" prefWidth="300.0" styleClass="white-form" stylesheets="@loginDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="75.0" layoutY="75.0" prefHeight="30.0" prefWidth="129.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Iniciar Sesión" textFill="#286155">
                      <font>
@@ -27,7 +27,7 @@
                   <Button fx:id="iniciar_boton" layoutX="75.0" layoutY="295.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Iniciar Sesión" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="registrarse_formulario" prefHeight="400.0" prefWidth="300.0" styleClass="white-form" stylesheets="@loginDesign.css">
+            <AnchorPane fx:id="registrarse_formulario" prefHeight="400.0" prefWidth="300.0" styleClass="white-form" stylesheets="@loginDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="75.0" layoutY="75.0" prefHeight="30.0" prefWidth="129.0" styleClass="head-label" stylesheets="@loginDesign.css" text="Registrarse" textFill="#286155">
                      <font>
@@ -35,20 +35,20 @@
                      </font>
                   </Label>
                   <TextField fx:id="registrarse_usuario" layoutX="75.0" layoutY="135.0" prefHeight="30.0" prefWidth="150.0" promptText="Usuario" styleClass="campo-texto" stylesheets="@loginDesign.css" />
-                  <TextField fx:id="registrarse_telefono" layoutX="75.0" layoutY="185.0" prefHeight="30.0" prefWidth="150.0" promptText="Teléfono" styleClass="campo-texto" stylesheets="@loginDesign.css" />
-                  <PasswordField fx:id="registrarse_contraseña" layoutX="75.0" layoutY="235.0" prefHeight="30.0" prefWidth="150.0" promptText="Contraseña" styleClass="campo-texto" stylesheets="@loginDesign.css" />
-                  <Button fx:id="registrase_boton" layoutX="75.0" layoutY="295.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Crear Cuenta" />
+                  <PasswordField fx:id="registrarse_contraseña" layoutX="75.0" layoutY="185.0" prefHeight="30.0" prefWidth="150.0" promptText="Contraseña" styleClass="campo-texto" stylesheets="@loginDesign.css" />
+                  <TextField fx:id="registrarse_telefono" layoutX="75.0" layoutY="235.0" prefHeight="30.0" prefWidth="150.0" promptText="Teléfono" styleClass="campo-texto" stylesheets="@loginDesign.css" />
+                  <Button fx:id="registrase_boton" layoutX="75.0" layoutY="295.0" mnemonicParsing="false" onAction="#regBtn" prefHeight="30.0" prefWidth="150.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Crear Cuenta" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="crear_formulario" prefHeight="400.0" prefWidth="300.0" styleClass="gradient" stylesheets="@loginDesign.css">
+            <AnchorPane fx:id="crear_formulario" prefHeight="400.0" prefWidth="300.0" styleClass="gradient" stylesheets="@loginDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <FontAwesomeIcon fill="RED" glyphName="COFFEE" layoutX="87.0" layoutY="182.0" size="10em" />
+                  <FontAwesomeIcon fill="WHITE" glyphName="COFFEE" layoutX="87.0" layoutY="182.0" size="10em" />
                   <Label layoutX="56.0" layoutY="200.0" text="La Sazón de mi Mami" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="crear_boton" layoutX="76.0" layoutY="295.0" mnemonicParsing="false" onAction="#cambiarFormulario" prefHeight="25.0" prefWidth="150.0" styleClass="crear-btn" stylesheets="@loginDesign.css" text="Crear nueva cuenta" />
+                  <Button fx:id="crear_boton" layoutX="76.0" layoutY="295.0" mnemonicParsing="false" onAction="#cambiarFormulario" prefHeight="25.0" prefWidth="150.0" styleClass="crear-btn" stylesheets="@loginDesign.css" text="Crear nueva cuenta" AnchorPane.bottomAnchor="73.0" />
                   <Button fx:id="crear_cuentaExistente" layoutX="76.0" layoutY="295.0" mnemonicParsing="false" onAction="#cambiarFormulario" prefHeight="25.0" prefWidth="150.0" styleClass="crear-btn" stylesheets="@loginDesign.css" text="Ya tengo una cuenta" visible="false" />
                </children>
             </AnchorPane>

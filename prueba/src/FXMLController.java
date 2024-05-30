@@ -16,6 +16,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * FXML Controller class
@@ -63,6 +68,63 @@ public class FXMLController implements Initializable {
     @FXML
     private Button crear_cuentaExistente;
 
+    private Connection connect;
+    private PreparedStatement prepare;
+    private ResultSet result;
+
+    private Alert alert;
+
+    public void regBtn() {
+        if (registrarse_usuario.getText().isEmpty() || registrarse_contraseña.getText().isEmpty() || registrarse_telefono.getText().isEmpty()) {
+
+            alert = new Alert(AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText(null);
+            alert.setContentText("Rellene los especios indicados");
+            alert.showAndWait();
+
+        } else {
+
+            String regData = "INSERT INTO cliente (Usuario, Contraseña, telefono)" + "VALUES(?,?,?)";
+            connect = baseDatos.connectDB();
+
+            try {
+                prepare = connect.prepareStatement(regData);
+                prepare.setString(1, registrarse_usuario.getText());
+                prepare.setString(2, registrarse_contraseña.getText());
+                prepare.setString(3, registrarse_telefono.getText());
+
+                prepare.executeUpdate();
+
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Información");
+                alert.setHeaderText(null);
+                alert.setContentText("Registro Exitoso");
+                alert.showAndWait();
+
+                registrarse_usuario.setText("");
+                registrarse_contraseña.setText("");
+                registrarse_telefono.setText("");
+                
+                TranslateTransition slider = new TranslateTransition();
+
+                slider.setNode(crear_formulario);
+                slider.setToX(0);
+                slider.setDuration(javafx.util.Duration.seconds(.375));
+
+                slider.setOnFinished((ActionEvent e) -> {
+                    crear_cuentaExistente.setVisible(false);
+                    crear_boton.setVisible(true);
+                });
+
+                slider.play();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public void cambiarFormulario(ActionEvent event) {
 
         TranslateTransition slider = new TranslateTransition();
@@ -70,7 +132,7 @@ public class FXMLController implements Initializable {
         if (event.getSource() == crear_boton) {
             slider.setNode(crear_formulario);
             slider.setToX(300);
-            slider.setDuration(javafx.util.Duration.seconds(.5));
+            slider.setDuration(javafx.util.Duration.seconds(.375));
 
             slider.setOnFinished((ActionEvent e) -> {
                 crear_cuentaExistente.setVisible(true);
@@ -81,7 +143,7 @@ public class FXMLController implements Initializable {
         } else if (event.getSource() == crear_cuentaExistente) {
             slider.setNode(crear_formulario);
             slider.setToX(0);
-            slider.setDuration(javafx.util.Duration.seconds(.5));
+            slider.setDuration(javafx.util.Duration.seconds(.375));
 
             slider.setOnFinished((ActionEvent e) -> {
                 crear_cuentaExistente.setVisible(false);
@@ -95,6 +157,6 @@ public class FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }

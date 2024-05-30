@@ -14,13 +14,17 @@ import javafx.stage.Stage;
  * @author juanm
  */
 public class NewFXMain extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+
+        stage.setTitle("La sazón de mi mami");
+        stage.setMinHeight(410);
+        stage.setMinWidth(610);
+
         stage.setScene(scene);
         stage.show();
     }
@@ -31,5 +35,5 @@ public class NewFXMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
