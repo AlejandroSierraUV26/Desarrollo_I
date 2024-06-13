@@ -70,11 +70,11 @@ Este proyecto desarrolla una aplicación innovadora para la gestión de pedidos 
 
 ## Autores
 
-- **Alejandro Sierra Betancourt** - [AlejandroSierra](https://github.com/AlejandroSierra)
-- **Juan Pablo Castaño Arango** - [JuanPabloCastano](https://github.com/JuanPabloCastano)
-- **Juan Manuel Ramírez Agudelo** - [JuanManuelRamirez](https://github.com/JuanManuelRamirez)
-- **David Santiago Velasco Triana** - [DavidVelasco](https://github.com/DavidVelasco)
-- **Cristian David Rivera Torres** - [CristianRivera](https://github.com/CristianRivera)
-- **William Alexander Franco Otero** - [WilliamFranco](https://github.com/WilliamFranco)
+- **Alejandro Sierra Betancourt** - [AlejandroSierra](https://github.com/AlejandroSierraUV26)
+- **Juan Pablo Castaño Arango** - [JuanPabloCastano](https://github.com/ElPachFire)
+- **Juan Manuel Ramírez Agudelo** - [JuanManuelRamirez](https://github.com/JMCoC)
+- **David Santiago Velasco Triana** - [DavidVelasco](https://github.com/lDavidSantiago)
+- **Cristian David Rivera Torres** - [CristianRivera](https://github.com/Ganzolitario)
+- **William Alexander Franco Otero** - [WilliamFranco](https://github.com/William495t)
 
 Para más información, consulta la documentación detallada en el repositorio.
