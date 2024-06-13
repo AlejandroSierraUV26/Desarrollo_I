@@ -10,10 +10,7 @@ Este proyecto desarrolla una aplicación innovadora para la gestión de pedidos 
 - [Características](#características)
 - [Arquitectura del Sistema](#arquitectura-del-sistema)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
-- [Instalación](#instalación)
 - [Uso](#uso)
-- [Contribución](#contribución)
-- [Licencia](#licencia)
 - [Autores](#autores)
 
 ## Características
@@ -62,44 +59,14 @@ Este proyecto desarrolla una aplicación innovadora para la gestión de pedidos 
 - **Lenguajes de Programación:** Java, SQL
 - **Frameworks:** Spring Boot, Hibernate
 - **Base de Datos:** MySQL
-- **Frontend:** HTML, CSS, JavaScript
+- **Frontend:** JavaFX
 - **Dispositivos:** Tablets para las mesas
-
-## Instalación
-
-1. Clona el repositorio:
-    ```bash
-    git clone https://github.com/tu-usuario/gestion-pedidos-restaurante.git
-    ```
-2. Navega al directorio del proyecto:
-    ```bash
-    cd gestion-pedidos-restaurante
-    ```
-3. Configura la base de datos en `application.properties`.
-4. Ejecuta la aplicación:
-    ```bash
-    ./mvnw spring-boot:run
-    ```
 
 ## Uso
 
 1. **Acceso al Menú:** Los clientes pueden ver el menú desde la tablet instalada en su mesa.
 2. **Realizar Pedidos:** Seleccionar los productos deseados y confirmar el pedido.
 3. **Gestión de Pedidos:** El personal puede ver y gestionar los pedidos desde el backend de la aplicación.
-
-## Contribución
-
-¡Las contribuciones son bienvenidas! Por favor, sigue los siguientes pasos:
-
-1. Haz un fork del proyecto.
-2. Crea una rama para tu característica (`git checkout -b feature/nueva-caracteristica`).
-3. Haz commit de tus cambios (`git commit -am 'Añadir nueva característica'`).
-4. Sube la rama (`git push origin feature/nueva-caracteristica`).
-5. Abre un Pull Request.
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ## Autores
 
