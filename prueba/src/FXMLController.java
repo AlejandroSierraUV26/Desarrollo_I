@@ -19,8 +19,13 @@ import javafx.scene.layout.AnchorPane;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
+
 
 /**
  * FXML Controller class
@@ -97,7 +102,7 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Button registrase_boton;
-
+    
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
@@ -112,35 +117,104 @@ public class FXMLController implements Initializable {
             alert.setContentText("Rellene los espacios indicados");
             alert.showAndWait();
         } else {
-            String selctData = "SELECT usuario, contraseña FROM cliente WHERE usuario = ? and contraseña = ?";
+            if ("AdminSupremo".equals(iniciar_usuario.getText()) && "adminsupremo123".equals(iniciar_contraseña.getText())) {
+                String selctData = "SELECT usuario, contraseña FROM administrador WHERE usuario = ? and contraseña = ?";
 
-            connect = baseDatos.connectDB();
+                connect = baseDatos.connectDB();
 
-            try {
+                try {
 
-                prepare = connect.prepareStatement(selctData);
-                prepare.setString(1, iniciar_usuario.getText());
-                prepare.setString(2, iniciar_contraseña.getText());
+                    prepare = connect.prepareStatement(selctData);
+                    prepare.setString(1, iniciar_usuario.getText());
+                    prepare.setString(2, iniciar_contraseña.getText());
 
-                result = prepare.executeQuery();
+                    result = prepare.executeQuery();
 
-                if (result.next()) {
-                    alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Información");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Inicio exitoso!");
-                    alert.showAndWait();
-                } else {
-                    alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("ERROR");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Usuario o Contraseña incorrectos");
-                    alert.showAndWait();
+                    if (result.next()) {
+                        
+                        data.usuario = iniciar_usuario.getText();
+                        
+                        alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Información");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Inicio exitoso!");
+                        alert.showAndWait();
+
+                        Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+                        
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+
+                        stage.setTitle("La Sazón de mi Mami");
+                        stage.setMinWidth(1100);
+                        stage.setMinHeight(600);
+
+                        stage.setScene(scene);
+                        stage.show();
+
+                        iniciar_boton.getScene().getWindow().hide();
+
+                    } else {
+                        alert = new Alert(AlertType.ERROR);
+                        alert.setTitle("ERROR");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Usuario o Contraseña incorrectos");
+                        alert.showAndWait();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            } else {
+                String selctData = "SELECT usuario, contraseña FROM cliente WHERE usuario = ? and contraseña = ?";
 
-            } catch (Exception e) {
-                e.printStackTrace();
+                connect = baseDatos.connectDB();
+
+                try {
+
+                    prepare = connect.prepareStatement(selctData);
+                    prepare.setString(1, iniciar_usuario.getText());
+                    prepare.setString(2, iniciar_contraseña.getText());
+
+                    result = prepare.executeQuery();
+
+                    if (result.next()) {
+                        
+                        data.usuario = iniciar_usuario.getText();
+                        
+                        alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Información");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Inicio exitoso!");
+                        alert.showAndWait();
+                                               
+                        Parent root = FXMLLoader.load(getClass().getResource("mainCliente.fxml"));
+                        
+                        Stage stage = new Stage();
+                        Scene scene = new Scene(root);
+
+                        stage.setTitle("La Sazón de mi Mami");
+                        stage.setMinWidth(1100);
+                        stage.setMinHeight(600);
+
+                        stage.setScene(scene);
+                        stage.show();
+
+                        iniciar_boton.getScene().getWindow().hide();
+
+                    } else {
+                        alert = new Alert(AlertType.ERROR);
+                        alert.setTitle("ERROR");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Usuario o Contraseña incorrectos");
+                        alert.showAndWait();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+
         }
     }
 
@@ -165,7 +239,7 @@ public class FXMLController implements Initializable {
                 prepare = connect.prepareStatement(revisarUsuario);
                 result = prepare.executeQuery();
 
-                if (result.next()) {
+                if (result.next() || "AdminSupremo".equals(registrarse_usuario.getText())) {
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("ERROR");
                     alert.setHeaderText(null);

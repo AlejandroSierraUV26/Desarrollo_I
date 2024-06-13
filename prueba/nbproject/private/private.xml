@@ -4,10 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/FXML.fxml</file>
-            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/baseDatos.java</file>
-            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/loginDesign.css</file>
-            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/NewFXMain.java</file>
+            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/mainCliente.fxml</file>
+            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/prodIngreData.java</file>
             <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/FXMLController.java</file>
+            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/mainController.java</file>
+            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/mainDesign.css</file>
+            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/main.fxml</file>
+            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/data.java</file>
+            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/prodData.java</file>
+            <file>file:/C:/Users/juanm/OneDrive/Escritorio/repositorioDesarrollo/Desarrollo_I/prueba/src/ingreData.java</file>
         </group>
     </open-files>
 </project-private>
