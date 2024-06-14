@@ -25,8 +25,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -122,6 +126,9 @@ public class mainController implements Initializable {
     private AnchorPane main_form;
 
     @FXML
+    private AnchorPane dashboard_form;
+
+    @FXML
     private Button menu_btn;
 
     @FXML
@@ -163,6 +170,45 @@ public class mainController implements Initializable {
     @FXML
     private Label usuario;
 
+    @FXML
+    private GridPane menuGridPane;
+
+    @FXML
+    private ScrollPane menu_ScrollPane;
+
+    @FXML
+    private TableView<?> menu_TableView;
+
+    @FXML
+    private Label menu_cambio;
+
+    @FXML
+    private TableColumn<?, ?> menu_cantidad;
+
+    @FXML
+    private AnchorPane menu_form;
+
+    @FXML
+    private TextField menu_monto;
+
+    @FXML
+    private Button menu_pagarBtn;
+
+    @FXML
+    private TableColumn<?, ?> menu_precio;
+
+    @FXML
+    private TableColumn<?, ?> menu_producto;
+
+    @FXML
+    private Button menu_reciboBtn;
+
+    @FXML
+    private Button menu_removerBtn;
+
+    @FXML
+    private Label menu_total;
+
     private Alert alert;
 
     private Connection connect;
@@ -173,6 +219,8 @@ public class mainController implements Initializable {
     private ResultSet result2;
 
     private Image image;
+
+    private ObservableList<prodData> cardListData = FXCollections.observableArrayList();
 
     public void inventarioProdAddBtn() {
         if (productoCodigo_texto.getText().isEmpty()
@@ -206,12 +254,17 @@ public class mainController implements Initializable {
 
                 } else {
 
-                    String insertData = "INSERT INTO productos " + "(CodigoProducto, Descripcion, Precio) " + "VALUES(?,?,?)";
+                    String insertData = "INSERT INTO productos " + "(CodigoProducto, Descripcion, Precio, Imagen) " + "VALUES(?,?,?,?)";
 
                     prepare = connect.prepareCall(insertData);
                     prepare.setString(1, productoCodigo_texto.getText());
                     prepare.setString(2, productoDesc_texto.getText());
                     prepare.setString(3, productoPrecio_texto.getText());
+
+                    String path = data.path;
+                    path = path.replace("\\", "\\\\");
+
+                    prepare.setString(4, path);
 
                     prepare.executeUpdate();
 
@@ -670,7 +723,7 @@ public class mainController implements Initializable {
                 if (result.next()) {
 
                     String updateData = "UPDATE productos SET "
-                            + "Descripcion = ?, Precio = ? "
+                            + "Descripcion = ?, Precio = ?, Imagen = ?"
                             + "WHERE CodigoProducto = ?";
 
                     connect = baseDatos.connectDB();
@@ -688,7 +741,8 @@ public class mainController implements Initializable {
                             prepare = connect.prepareStatement(updateData);
                             prepare.setString(1, productoDesc_texto.getText());
                             prepare.setString(2, productoPrecio_texto.getText());
-                            prepare.setString(3, productoCodigo_texto.getText());
+                            prepare.setString(3, data.path);
+                            prepare.setString(4, productoCodigo_texto.getText());
                             prepare.executeUpdate();
 
                             alert = new Alert(AlertType.INFORMATION);
@@ -898,6 +952,14 @@ public class mainController implements Initializable {
         productoDesc_texto.setText(productoData.getDescripcionProducto());
         productoPrecio_texto.setText(String.valueOf(productoData.getPrecioProducto()));
 
+        data.path = productoData.getImagen();
+
+        String path = "File:" + productoData.getImagen();
+
+        image = new Image(path, 100, 100, false, true);
+
+        producto_imagen.setImage(image);
+
     }
 
     public void inventarioIngreSelectData() {
@@ -964,7 +1026,8 @@ public class mainController implements Initializable {
 
                 datosProd = new prodData(result.getInt("CodigoProducto"),
                         result.getString("Descripcion"),
-                        result.getInt("Precio")
+                        result.getInt("Precio"),
+                        result.getString("Imagen")
                 );
 
                 listData.add(datosProd);
@@ -1080,6 +1143,96 @@ public class mainController implements Initializable {
 
     }
 
+    public ObservableList<prodData> menuGetData() {
+
+        String sql = "SELECT * FROM productos";
+
+        ObservableList<prodData> listData = FXCollections.observableArrayList();
+
+        connect = baseDatos.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            prodData prod;
+
+            while (result.next()) {
+                prod = new prodData(result.getInt("CodigoProducto"),
+                        result.getString("Descripcion"),
+                        result.getInt("Precio"),
+                        result.getString("Imagen"));
+
+                listData.add(prod);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listData;
+    }
+
+    public void menuDisplayCard() {
+        cardListData.clear();
+        cardListData.addAll(menuGetData());
+
+        int fila = 0;
+        int columna = 0;
+
+        menuGridPane.getChildren().clear();
+        menuGridPane.getRowConstraints().clear();
+        menuGridPane.getColumnConstraints().clear();
+
+        for (int q = 0; q < cardListData.size(); q++) {
+
+            try {
+
+                FXMLLoader load = new FXMLLoader();
+                load.setLocation(getClass().getResource("cardProduct.fxml"));
+                AnchorPane pane = load.load();
+                cardController cardC = load.getController();
+                cardC.setData(cardListData.get(q));
+
+                if (columna == 3) {
+                    columna = 0;
+                    fila += 1;
+                }
+
+                menuGridPane.add(pane, columna++, fila);
+                GridPane.setMargin(pane, new Insets(10));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public void cambiarForm(ActionEvent event) {
+        if (event.getSource() == dashboard_btn) {
+            dashboard_form.setVisible(true);
+            inventario_form.setVisible(false);
+            menu_form.setVisible(false);
+        } else if (event.getSource() == inventario_btn) {
+            dashboard_form.setVisible(false);
+            inventario_form.setVisible(true);
+            menu_form.setVisible(false);
+
+            inventoryShowProdData();
+            inventoryShowIngreData();
+            inventoryShowProdIngreData();
+
+        } else if (event.getSource() == menu_btn) {
+            dashboard_form.setVisible(false);
+            inventario_form.setVisible(false);
+            menu_form.setVisible(true);
+
+            menuDisplayCard();
+        }
+    }
+
     public void logout() {
 
         try {
@@ -1128,6 +1281,8 @@ public class mainController implements Initializable {
         inventoryShowProdData();
         inventoryShowIngreData();
         inventoryShowProdIngreData();
+
+        menuDisplayCard();
     }
 
 }

@@ -12,20 +12,18 @@ public class prodData {
     private Integer codigoProducto;
     private String descripcionProducto;
     private Integer precioProducto;
-   
+    private String imagen;
 
     public prodData(Integer codigoProducto,
             String descripcionProducto,
-            Integer precioProducto) {
+            Integer precioProducto, String imagen) {
 
         this.codigoProducto = codigoProducto;
         this.descripcionProducto = descripcionProducto;
         this.precioProducto = precioProducto;
-        
-        
-
+        this.imagen = imagen;
     }
-
+    
     public Integer getCodigoProducto() {
         return codigoProducto;
     }
@@ -38,8 +36,10 @@ public class prodData {
         return precioProducto;
     }
     
+    public String getImagen(){
+        return imagen;
+    }
+    
     
 
-    
 }
-
